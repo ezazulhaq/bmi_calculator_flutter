@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
 import 'reusable_card.dart';
+import 'gender.dart';
 
 const buttomButtonHeight = 80.0;
 const activeCardColor = Color(0xFF1D1E33);
@@ -18,9 +19,9 @@ class _InputPageState extends State<InputPage> {
   Color femaleCardColor = inactiveCardColor;
 
   // 1-male and 2-female
-  void updateCard(int gender) {
+  void updateCard(Gender gender) {
     // male card pressed
-    if (gender == 1) {
+    if (gender == Gender.MALE) {
       if (maleCardColor == inactiveCardColor) {
         maleCardColor = activeCardColor;
         femaleCardColor = inactiveCardColor;
@@ -31,7 +32,7 @@ class _InputPageState extends State<InputPage> {
     }
 
     // female card pressed
-    if (gender == 2) {
+    if (gender == Gender.FEMALE) {
       if (femaleCardColor == inactiveCardColor) {
         maleCardColor = inactiveCardColor;
         femaleCardColor = activeCardColor;
@@ -59,7 +60,7 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        updateCard(1);
+                        updateCard(Gender.MALE);
                       });
                     },
                     child: ReusableCard(
@@ -76,7 +77,7 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        updateCard(2);
+                        updateCard(Gender.FEMALE);
                       });
                     },
                     child: ReusableCard(
