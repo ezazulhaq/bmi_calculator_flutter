@@ -4,6 +4,7 @@ import 'icon_content.dart';
 import 'reusable_card.dart';
 import 'gender.dart';
 import 'constants.dart';
+import 'round_icon_button.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -13,6 +14,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender selectedGender;
   int height = 180;
+  int weight = 70;
+  int age = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -126,12 +129,86 @@ class _InputPageState extends State<InputPage> {
                   flex: 1,
                   child: ReusableCard(
                     colour: kActiveCardColor,
+                    childCard: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'WEIGHT',
+                          style: kLableText,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: kNumberText,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPress: () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPress: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
                   flex: 1,
                   child: ReusableCard(
                     colour: kActiveCardColor,
+                    childCard: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'AGE',
+                          style: kLableText,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kNumberText,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPress: () {
+                                setState(() {
+                                  age--;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPress: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -141,6 +218,18 @@ class _InputPageState extends State<InputPage> {
             color: kButtomContainerColor,
             height: kButtomButtonHeight,
             margin: EdgeInsets.only(top: 10.0),
+            child: FlatButton(
+              onPressed: () {},
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'CALCULATE',
+                    style: kButtonText,
+                  ),
+                ],
+              ),
+            ),
           )
         ],
       ),
