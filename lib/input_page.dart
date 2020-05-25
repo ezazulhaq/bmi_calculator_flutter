@@ -3,11 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
 import 'reusable_card.dart';
 import 'gender.dart';
-
-const buttomButtonHeight = 80.0;
-const activeCardColor = Color(0xFF1D1E33);
-const inactiveCardColor = Color(0xFF111328);
-const buttomContainerColor = Color(0xFFEB1555);
+import 'constants.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -16,6 +12,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender selectedGender;
+  int height = 180;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +21,7 @@ class _InputPageState extends State<InputPage> {
         title: Text('BMI CALCULATOR'),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
             flex: 1,
@@ -38,8 +36,8 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     colour: selectedGender == Gender.MALE
-                        ? activeCardColor
-                        : inactiveCardColor,
+                        ? kActiveCardColor
+                        : kInactiveCardColor,
                     childCard: IconContent(
                       icon: FontAwesomeIcons.mars,
                       label: 'MALE',
@@ -55,8 +53,8 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     colour: selectedGender == Gender.FEMALE
-                        ? activeCardColor
-                        : inactiveCardColor,
+                        ? kActiveCardColor
+                        : kInactiveCardColor,
                     childCard: IconContent(
                       icon: FontAwesomeIcons.venus,
                       label: 'FEMALE',
@@ -69,7 +67,55 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             flex: 1,
             child: ReusableCard(
-              colour: activeCardColor,
+              colour: kActiveCardColor,
+              childCard: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'HEIGHT',
+                    style: kLableText,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: <Widget>[
+                      Text(
+                        height.toString(),
+                        style: kNumberText,
+                      ),
+                      Text(
+                        'cm',
+                        style: kLableText,
+                      )
+                    ],
+                  ),
+                  SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                      activeTrackColor: kActiveSliderColor,
+                      inactiveTrackColor: kInactiveSliderColor,
+                      overlayColor: Color(0x29EB1555),
+                      thumbColor: Color(0xFFEB1555),
+                      thumbShape: RoundSliderThumbShape(
+                        enabledThumbRadius: 15.0,
+                      ),
+                      overlayShape: RoundSliderOverlayShape(
+                        overlayRadius: 24.0,
+                      ),
+                    ),
+                    child: Slider(
+                      value: height.toDouble(),
+                      min: kMinHeight,
+                      max: kMaxHeight,
+                      onChanged: (double value) {
+                        setState(() {
+                          height = value.round();
+                        });
+                      },
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
           Expanded(
@@ -79,21 +125,21 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   flex: 1,
                   child: ReusableCard(
-                    colour: activeCardColor,
+                    colour: kActiveCardColor,
                   ),
                 ),
                 Expanded(
                   flex: 1,
                   child: ReusableCard(
-                    colour: activeCardColor,
+                    colour: kActiveCardColor,
                   ),
                 ),
               ],
             ),
           ),
           Container(
-            color: buttomContainerColor,
-            height: buttomButtonHeight,
+            color: kButtomContainerColor,
+            height: kButtomButtonHeight,
             margin: EdgeInsets.only(top: 10.0),
           )
         ],
