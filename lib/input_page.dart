@@ -144,6 +144,7 @@ class _InputPageState extends State<InputPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             RoundIconButton(
+                              hero: 'weightMinus',
                               icon: FontAwesomeIcons.minus,
                               onPress: () {
                                 setState(() {
@@ -155,6 +156,7 @@ class _InputPageState extends State<InputPage> {
                               width: 10.0,
                             ),
                             RoundIconButton(
+                              hero: 'weightPlus',
                               icon: FontAwesomeIcons.plus,
                               onPress: () {
                                 setState(() {
@@ -187,6 +189,7 @@ class _InputPageState extends State<InputPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             RoundIconButton(
+                              hero: 'ageMinus',
                               icon: FontAwesomeIcons.minus,
                               onPress: () {
                                 setState(() {
@@ -198,6 +201,7 @@ class _InputPageState extends State<InputPage> {
                               width: 10.0,
                             ),
                             RoundIconButton(
+                              hero: 'agePlus',
                               icon: FontAwesomeIcons.plus,
                               onPress: () {
                                 setState(() {
@@ -214,20 +218,16 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: kButtomContainerColor,
-            height: kButtomButtonHeight,
-            margin: EdgeInsets.only(top: 10.0),
-            child: FlatButton(
-              onPressed: () {},
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'CALCULATE',
-                    style: kButtonText,
-                  ),
-                ],
+          GestureDetector(
+            onTap: () => Navigator.pushNamed(context, '/calc'),
+            child: Container(
+              color: kButtomContainerColor,
+              height: kButtomButtonHeight,
+              padding: EdgeInsets.only(top: 20.0),
+              child: Text(
+                'CALCULATE',
+                style: kButtonText,
+                textAlign: TextAlign.center,
               ),
             ),
           )
